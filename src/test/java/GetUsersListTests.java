@@ -1,14 +1,21 @@
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class GetUsersListTests {
+public class GetUsersListTests extends TestBase {
 
     @Test
     void checkSuccessListWith3UsersPer1StPage() {
-        get("https://reqres.in/api/users?page=1&per_page=3")
-                .then()
+        given()
+                .queryParam("page", 1)
+                .queryParam("per_page", 3)
+                .log().uri()
+
+        .when()
+                .get("/users")
+
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -19,8 +26,13 @@ public class GetUsersListTests {
 
     @Test
     void checkSuccessListWith1UsersPer2NdPage() {
-        get("https://reqres.in/api/users?page=2&per_page=1")
-                .then()
+        given()
+                .queryParam("page", 2)
+                .queryParam("per_page", 1)
+        .when()
+
+                .get("/users")
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -32,8 +44,12 @@ public class GetUsersListTests {
 
     @Test
     void checkFieldsAreNotEmpty() {
-        get("https://reqres.in/api/users?page=2&per_page=1")
-                .then()
+        given()
+                .queryParam("page", 2)
+                .queryParam("per_page", 1)
+        .when()
+                .get("/users")
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -41,7 +57,6 @@ public class GetUsersListTests {
                 .body("data.email", everyItem(not(emptyOrNullString())))  // Проверка, что все email не пустые
                 .body("data.first_name", everyItem(not(emptyOrNullString())))  // Проверка, что все first_name не пустые
                 .body("data.last_name", everyItem(not(emptyOrNullString())))  // Проверка, что все last_name не пустые
-                .body("data.avatar", everyItem(not(emptyOrNullString())))  // Проверка, что все avatar не пустые
-        ;
+                .body("data.avatar", everyItem(not(emptyOrNullString()))); // Проверка, что все avatar не пустые
     }
 }

@@ -3,16 +3,16 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class UpdatesUser {
+public class UpdatesUserTests extends  TestBase{
     @Test
     void checkUpdatedAtIsNotEmpty() {
         given()
                 .log().uri()
 
-                .when()
-                .put("https://reqres.in/api/users/{id}", 1)
+        .when()
+                .put("/users/{id}", 1)
 
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)

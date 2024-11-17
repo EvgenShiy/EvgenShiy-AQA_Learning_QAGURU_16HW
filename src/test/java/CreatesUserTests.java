@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-public class CreatesUserTests {
+public class CreatesUserTests extends TestBase {
 
     @Test
     void unsuccessfulRegistration400Test() {
@@ -15,7 +15,7 @@ public class CreatesUserTests {
                 .log().uri()
 
                 .when()
-                .post("https://reqres.in/api/register")
+                .post("/register")
 
                 .then()
                 .log().status()
