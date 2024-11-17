@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -6,6 +7,7 @@ import static org.hamcrest.Matchers.*;
 public class GetUsersListTests extends TestBase {
 
     @Test
+    @DisplayName("Проверка отображения 3х объектов на 1-ой странице")
     void checkSuccessListWith3UsersPer1StPage() {
         given()
                 .queryParam("page", 1)
@@ -25,6 +27,7 @@ public class GetUsersListTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Проверка отображения одного объекта на 2-ой странице")
     void checkSuccessListWith1UsersPer2NdPage() {
         given()
                 .queryParam("page", 2)
@@ -43,6 +46,7 @@ public class GetUsersListTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Проверить, что возвращаемые поля не пустые")
     void checkFieldsAreNotEmpty() {
         given()
                 .queryParam("page", 2)

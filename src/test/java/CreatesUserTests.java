@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -6,6 +7,7 @@ import static org.hamcrest.Matchers.is;
 public class CreatesUserTests extends TestBase {
 
     @Test
+    @DisplayName("Проверка неуспешной регистрации юзера")
     void unsuccessfulRegistration400Test() {
         String authData = "{\"username\": \"Jane Air\", \"email\": \"Jane@Air.com\", \"password\": \"111\"}";
 

@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -5,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 
 public class UpdatesUserTests extends  TestBase{
     @Test
+    @DisplayName("Проверить, что после обновления юзера поле UpdatedAt не пустое")
     void checkUpdatedAtIsNotEmpty() {
         given()
                 .log().uri()
