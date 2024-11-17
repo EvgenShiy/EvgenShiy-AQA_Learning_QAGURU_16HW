@@ -46,7 +46,7 @@ public class GetUsersListTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверить, что возвращаемые поля не пустые")
+    @DisplayName("Проверить, что возвращаемые поля о юзере не пустые")
     void checkFieldsAreNotEmpty() {
         given()
                 .queryParam("page", 2)
