@@ -1,17 +1,25 @@
+package tests;
+
+import models.RegNewUserBodyModel;
+import models.RegNewUserResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreatesUserTests extends TestBase {
 
     @Test
     @DisplayName("Проверка неуспешной регистрации юзера")
     void unsuccessfulRegistration400Test() {
-        String authData = "{\"username\": \"Jane Air\", \"email\": \"Jane@Air.com\", \"password\": \"111\"}";
+        RegNewUserBodyModel authData = new RegNewUserBodyModel();
+        authData.setUsername("Jane Air");
+        authData.setEmail("Jane@Air.com");
+        authData.setPassword("111");
 
-        given()
+        RegNewUserResponseModel response = given()
                 .contentType("application/json")
                 .body(authData)
                 .log().uri()
@@ -23,6 +31,8 @@ public class CreatesUserTests extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(400)
-                .body("error", is("Note: Only defined users succeed registration"));
+                .extract().as(RegNewUserResponseModel.class);
+
+        assertEquals("Note: Only defined users succeed registration", response.getError());
     }
 }
