@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import models.RegNewUserBodyModel;
 import models.RegNewUserResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,9 +21,12 @@ public class CreatesUserTests extends TestBase {
         authData.setPassword("111");
 
         RegNewUserResponseModel response = given()
+                .filter(withCustomTemplates())
+                .log().uri()
+                .log().body()
+                .log().headers()
                 .contentType("application/json")
                 .body(authData)
-                .log().uri()
 
                 .when()
                 .post("/register")
