@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static helpers.CustomApiListener.withCustomTemplates;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,7 +21,8 @@ public class CreatesUserTests extends TestBase {
         authData.setEmail("Jane@Air.com");
         authData.setPassword("111");
 
-        RegNewUserResponseModel response = given()
+        RegNewUserResponseModel response = step("Сделать запрос", ()->
+         given()
                 .filter(withCustomTemplates())
                 .log().uri()
                 .log().body()
@@ -35,8 +37,9 @@ public class CreatesUserTests extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(400)
-                .extract().as(RegNewUserResponseModel.class);
+                .extract().as(RegNewUserResponseModel.class));
 
-        assertEquals("Note: Only defined users succeed registration", response.getError());
+        step("Проверить ответ", ()->
+        assertEquals("Note: Only defined users succeed registration", response.getError()));
     }
 }
