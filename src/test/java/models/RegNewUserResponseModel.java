@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class RegNewUserResponseModel {
-    String id, token, error;
+    String token, error;
+    int id;
 }

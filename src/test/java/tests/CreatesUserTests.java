@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.CreatesUserSpec.*;
+import static specs.UserSpec.*;
 
 public class CreatesUserTests extends TestBase {
 
@@ -20,8 +20,8 @@ public class CreatesUserTests extends TestBase {
         authData.setEmail("Jane@Air.com");
         authData.setPassword("111");
 
-        RegNewUserResponseModel response = step("Сделать запрос", ()->
-         given(unSuccessRegistrationRequestSpec)
+        RegNewUserResponseModel response = step("Отправить POST запрос на регистрацию нового пользователя", ()->
+         given(requestSpec)
                 .body(authData)
 
                 .when()
