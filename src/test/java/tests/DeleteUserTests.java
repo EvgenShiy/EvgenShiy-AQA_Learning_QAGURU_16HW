@@ -13,7 +13,7 @@ public class DeleteUserTests extends TestBase {
     @Test
     @DisplayName("Проверка успешного удаления юзера по Id")
     void checkSuccessfulDeleteUserById() {
-        step("Отправить DELETE запрос на удаление юзера по ID", ()->
+        step("Отправить DELETE запрос на удаление юзера по id", ()->
         given(requestSpec)
 
                 .when()
