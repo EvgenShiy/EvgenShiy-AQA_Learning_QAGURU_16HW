@@ -45,3 +45,17 @@ tasks.withType(Test) {
         }
     }
 }
+
+task reqres_api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("ReqResAPI")
+    }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}

@@ -2,6 +2,7 @@ package tests;
 
 import models.UpdateResponseModel;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -15,6 +16,7 @@ import static specs.UserSpec.successUpdateUserByIdSpec;
 public class UpdatesUserTests extends  TestBase{
 
     @Test
+    @Tag("ReqResAPI")
     @DisplayName("Проверить, что после обновления юзера поле UpdatedAt не пустое")
     void checkUpdatedAtIsNotEmpty() {
         UpdateResponseModel response = step("Отправить PUT-запрос на обновление юзера по id", () ->

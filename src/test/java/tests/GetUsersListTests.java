@@ -2,6 +2,7 @@ package tests;
 
 import models.UserInfoResponseModel;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -13,6 +14,7 @@ import static specs.UserSpec.requestSpec;
 public class GetUsersListTests extends TestBase {
 
     @Test
+    @Tag("ReqResAPI")
     @DisplayName("Проверка отображения 3х юзеров на 1-ой странице")
     void checkSuccessListWith3UsersPer1StPage() {
 
@@ -34,6 +36,7 @@ public class GetUsersListTests extends TestBase {
     }
 
     @Test
+    @Tag("ReqResAPI")
     @DisplayName("Проверка отображения одного юзера на 2-ой странице")
     void checkSuccessListWith1UsersPer2NdPage() {
 
@@ -57,6 +60,7 @@ public class GetUsersListTests extends TestBase {
     }
 
     @Test
+    @Tag("ReqResAPI")
     @DisplayName("Проверить, что возвращаемые поля о юзере не пустые")
     void checkFieldsAreNotEmpty() {
         UserInfoResponseModel response = step("Отправить GET запрос на получение данных одного юзера на 2-ой странице", () ->

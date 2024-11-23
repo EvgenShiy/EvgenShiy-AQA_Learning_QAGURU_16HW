@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -11,6 +12,7 @@ import static specs.UserSpec.successDeleteUserByIdSpec;
 public class DeleteUserTests extends TestBase {
 
     @Test
+    @Tag("ReqResAPI")
     @DisplayName("Проверка успешного удаления юзера по Id")
     void checkSuccessfulDeleteUserById() {
         step("Отправить DELETE запрос на удаление юзера по id", ()->
